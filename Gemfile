@@ -46,6 +46,7 @@ end
 
 gem "twitter-bootstrap-rails"
 gem "ckeditor"
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -59,3 +60,4 @@ group :production do
   gem 'rails_12factor'
 end
 gem 'devise'
+gem 'cancancan', '~> 2.0'

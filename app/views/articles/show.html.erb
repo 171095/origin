@@ -7,7 +7,7 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @article.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @article.description %></dd>
+  <dd><%= @article.description.html_safe %></dd>
 </dl>
 <% if user_signed_in? %>
   <%= link_to t('.back', :default => t("helpers.links.back")),

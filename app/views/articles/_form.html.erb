@@ -15,6 +15,8 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :user_id, :value => current_user.id if user_signed_in? %>
+
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
