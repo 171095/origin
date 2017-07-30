@@ -1,7 +1,30 @@
-<div class="jumbotron">
-  <h1 class="text-center">Welcome to Tech bloggers</h1>
-  <div class="col-md-4 col-md-offset-4">
-   <%= link_to "View Articles" , articles_path, class: "btn btn-primary btn-block"
-   %>
+<header class="intro-header" style="background-image: url('<%= asset_path("home-bg.jpg")%>')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1>Article World</h1>
+          <hr class="small">
+          <span class="subheading">Find Latest Technical Updates On Our Article World</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <% @articles.each do |article|%>
+    <div class="post-preview">
+      <h2 class="post-title"><%= link_to article.name, article_path(article) %></h2>
+      <p class="post-meta">Posted by <a href="#">Article World</a> on <%= article.created_at.strftime("%a, %d-%b-%Y") %></p>
+    </div>
+    <hr>
+    <%end%>
+    <!-- <ul class="pager">
+      <li class="next">
+        <a href="#">Older Posts &rarr;</a>
+      </li>
+    </ul> -->
   </div>
 </div>

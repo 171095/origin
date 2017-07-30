@@ -1,25 +1,41 @@
-<%- model_class = Article -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<header class="intro-header" style="background-image: url('<%= asset_path("post-bg.jpg")%>')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1><%= @article.name %></h1>
+          <hr class="small">
+          <!-- <span class="subheading">Find Latest Technical Updates On Our Article World</span> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+    <%= @article.description.html_safe %>
+    <h2>Add a comment:</h2>
+  <%= form_for([@article, @article.comments.build]) do |f| %>
+  <div class="form-group">
+    <%= f.text_area :comment_text, class: "form-control", rows: "10"%>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Post Your Comment", class: "btn btn-primary btn-sm" %>
+  </div>
+<% end %>
+    <%= link_to t('.back', :default => t("helpers.links.back")),
+    "/", :class => 'btn btn-default'  %>
+  </div>
 </div>
-
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @article.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @article.description.html_safe %></dd>
-</dl>
-<% if user_signed_in? %>
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-                articles_path, :class => 'btn btn-default'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                edit_article_path(@article), :class => 'btn btn-default' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                article_path(@article),
-                :method => 'delete',
-                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                :class => 'btn btn-danger' %>
-<% else %>
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-                articles_path, :class => 'btn btn-default'  %>
-<%end%>
+<%# if user_signed_in? %>
+<%#= link_to t('.edit', :default => t("helpers.links.edit")),
+edit_article_path(@article), :class => 'btn btn-default' %>
+<%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
+article_path(@article),
+:method => 'delete',
+:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+:class => 'btn btn-danger' %>
+<%# else %>
+<%#= link_to t('.back', :default => t("helpers.links.back")),
+articles_path, :class => 'btn btn-default'  %>
+<%#end%>

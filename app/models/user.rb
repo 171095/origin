@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :articles
+  has_many :comments
 
   ROLES = %w[admin member reviewer].freeze
 end
